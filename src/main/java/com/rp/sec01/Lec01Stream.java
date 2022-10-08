@@ -17,7 +17,7 @@ public class Lec01Stream {
                                         });
 
         //System.out.println(stream); nothing will happen as terminal operator is not called at all
-        stream.forEach(System.out::println);
+        stream.forEach(System.out::println); // only it will work on calling one of the terminal operator
 
     }
 
