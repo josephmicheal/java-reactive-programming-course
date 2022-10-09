@@ -12,7 +12,6 @@ import reactor.core.publisher.Mono;
 public class FileService_mine {
 	public static void main(String[] args) {
 		
-		
 		Mono<Void> fileCreateWriteContent = Mono.fromRunnable(()->{
 
 			try {
@@ -28,14 +27,9 @@ public class FileService_mine {
 				writer.close();
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
-		
-		
-		fileCreateWriteContent.subscribe(com.rp.courseutil.Util.onNext(),com.rp.courseutil.Util.onError()
-				,com.rp.courseutil.Util.onComplete());
 		
 		Mono<String> fileReadContent = Mono.fromSupplier(()->{
 			StringBuilder content = new StringBuilder();
@@ -55,12 +49,7 @@ public class FileService_mine {
 			}
 			
 			return content.toString();
-		});
-		
-		
-		fileReadContent.subscribe(com.rp.courseutil.Util.onNext(),com.rp.courseutil.Util.onError()
-				,com.rp.courseutil.Util.onComplete());
-		
+		});		
 		
 		Mono<Boolean> deleteFile = Mono.fromSupplier(()->{
 				File newFile = new File("MyNames.txt");
@@ -71,11 +60,14 @@ public class FileService_mine {
 			return false;
 		});
 		
+		fileCreateWriteContent.subscribe(com.rp.courseutil.Util.onNext(),com.rp.courseutil.Util.onError()
+				,com.rp.courseutil.Util.onComplete());
+		
+		fileReadContent.subscribe(com.rp.courseutil.Util.onNext(),com.rp.courseutil.Util.onError()
+				,com.rp.courseutil.Util.onComplete());
 		
 		deleteFile.subscribe(com.rp.courseutil.Util.onNext(),com.rp.courseutil.Util.onError()
 				,com.rp.courseutil.Util.onComplete());
 
 	}
-	
-	
 }

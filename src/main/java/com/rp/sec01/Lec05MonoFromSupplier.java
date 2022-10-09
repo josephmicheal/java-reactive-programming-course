@@ -11,11 +11,11 @@ public class Lec05MonoFromSupplier {
     public static void main(String[] args) {
 
         // use just only when you have data already
-       // Mono<String> mono = Mono.just(getName());
+        Mono<String> mono = Mono.just(getName());
 
         Supplier<String> stringSupplier = () -> getName();
-        Mono<String> mono = Mono.fromSupplier(stringSupplier);
-        mono.subscribe(
+        Mono.fromSupplier(stringSupplier)
+        		.subscribe(
                 Util.onNext()
         );
 
@@ -24,7 +24,6 @@ public class Lec05MonoFromSupplier {
                 .subscribe(
                         Util.onNext()
                 );
-
 
     }
 

@@ -1,19 +1,23 @@
 package com.rp.sec02.helper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.rp.courseutil.Util;
+
 import reactor.core.publisher.Flux;
 
 public class NameGenerator {
 
-/*    public static List<String> getNames(int count){
+    public static List<String> getNamesAsList(int count){
         List<String> list = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {
             list.add(getName());
         }
         return list;
-    }*/
+    }
 
-    public static Flux<String> getNames(int count){
+    public static Flux<String> getNamesAsFlux(int count){
        return Flux.range(0, count)
                 .map(i -> getName());
     }

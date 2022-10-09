@@ -1,4 +1,4 @@
-package com.rp.sec02;
+package com.rp.sec02.assignment;
 
 import com.rp.courseutil.Util;
 import org.reactivestreams.Subscriber;
@@ -7,7 +7,7 @@ import reactor.core.publisher.Flux;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Lec06Subscription {
+public class StockPriceAssignment {
 
     public static void main(String[] args) {
 
@@ -38,9 +38,9 @@ public class Lec06Subscription {
                 });
 
         Util.sleepSeconds(3);
-        atomicReference.get().request(2);
+        atomicReference.get().request(3);
         Util.sleepSeconds(5);
-        atomicReference.get().request(2);
+        atomicReference.get().request(3);
         Util.sleepSeconds(5);
         System.out.println("going to cancel");
         atomicReference.get().cancel();
@@ -49,22 +49,8 @@ public class Lec06Subscription {
 
         Util.sleepSeconds(3);
 
+
     }
+
+
 }
-/*
-Output:
-	[ INFO] (main) | onSubscribe([Synchronous Fuseable] FluxRange.RangeSubscription)
-	Received Sub : reactor.core.publisher.StrictSubscriber@769c9116
-	[ INFO] (main) | request(2)
-	[ INFO] (main) | onNext(1)
-	onNext : 1
-	[ INFO] (main) | onNext(2)
-	onNext : 2
-	[ INFO] (main) | request(2)
-	[ INFO] (main) | onNext(3)
-	onNext : 3
-	[ INFO] (main) | onNext(4)
-	onNext : 4
-	going to cancel
-	[ INFO] (main) | cancel()
-	*/

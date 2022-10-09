@@ -7,15 +7,12 @@ public class Lec08MonoFromRunnable {
 
     public static void main(String[] args) {
 
-
         Mono.fromRunnable(timeConsumingProcess())
                 .subscribe(Util.onNext(),
                         Util.onError(),
                         () -> {
                             System.out.println("process is done. Sending emails...");
                         });
-
-
     }
 
     private static Runnable timeConsumingProcess(){
@@ -24,6 +21,4 @@ public class Lec08MonoFromRunnable {
             System.out.println("Operation completed");
         };
     }
-
-
 }
