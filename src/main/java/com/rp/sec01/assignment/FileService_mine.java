@@ -13,16 +13,17 @@ public class FileService_mine {
 	public static void main(String[] args) {
 		
 		
-		Mono<String> fileCreationContent = Mono.fromSupplier(()->{
-			StringBuilder content = new StringBuilder();
-			content.append(com.rp.courseutil.Util.faker().name().firstName());
-			content.append("\n");
-			content.append(com.rp.courseutil.Util.faker().name().firstName());
+		Mono<Void> fileCreateWriteContent = Mono.fromRunnable(()->{
+
 			try {
 				File newFile = new File("MyNames.txt");
 				if(newFile.exists() && newFile.delete()) {}
 				if(newFile.createNewFile()) {
 				BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
+				StringBuilder content = new StringBuilder();
+				content.append(com.rp.courseutil.Util.faker().name().firstName());
+				content.append("\n");
+				content.append(com.rp.courseutil.Util.faker().name().firstName());
 			    writer.write(content.toString());
 				writer.close();
 				}
@@ -30,12 +31,10 @@ public class FileService_mine {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			return content.toString();
 		});
 		
 		
-		fileCreationContent.subscribe(com.rp.courseutil.Util.onNext(),com.rp.courseutil.Util.onError()
+		fileCreateWriteContent.subscribe(com.rp.courseutil.Util.onNext(),com.rp.courseutil.Util.onError()
 				,com.rp.courseutil.Util.onComplete());
 		
 		Mono<String> fileReadContent = Mono.fromSupplier(()->{
