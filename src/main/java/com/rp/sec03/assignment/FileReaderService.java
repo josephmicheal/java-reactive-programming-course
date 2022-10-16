@@ -15,14 +15,14 @@ import java.util.function.Consumer;
 public class FileReaderService {
 
     private Callable<BufferedReader> openReader(Path path){
-        return () -> Files.newBufferedReader(path);
+        return () -> {System.out.println("open Reader...");return Files.newBufferedReader(path);};
     }
 
     private BiFunction<BufferedReader, SynchronousSink<String>, BufferedReader> read(){
         return (br, sink) -> {
             try {
                 String line = br.readLine();
-                System.out.println("reading --- " + line);
+                System.out.println(Thread.currentThread().getName() + " : " +"reading --- " + line);
                 if(Objects.isNull(line))
                     sink.complete();
                 else

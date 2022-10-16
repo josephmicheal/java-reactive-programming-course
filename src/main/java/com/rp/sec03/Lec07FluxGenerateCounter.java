@@ -17,7 +17,7 @@ public class Lec07FluxGenerateCounter {
                   return counter + 1;
                 }
         )
-        .take(4)
+       // .take(4)
         .subscribe(Util.subscriber());
 
 
