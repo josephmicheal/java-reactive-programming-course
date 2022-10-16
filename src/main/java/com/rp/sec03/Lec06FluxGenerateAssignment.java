@@ -19,9 +19,5 @@ public class Lec06FluxGenerateAssignment {
                 synchronousSink.complete();
         })
         .subscribe(Util.subscriber());
-
-
     }
-
-
 }

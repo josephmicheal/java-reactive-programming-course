@@ -4,9 +4,7 @@ import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
 
 public class Lec05FluxGenerate {
-
     public static void main(String[] args) {
-
         Flux.generate(synchronousSink -> {
             System.out.println("emitting");
             synchronousSink.next(Util.faker().country().name()); // 1
@@ -14,8 +12,5 @@ public class Lec05FluxGenerate {
         })
         .take(2)
         .subscribe(Util.subscriber());
-
-
     }
-
 }

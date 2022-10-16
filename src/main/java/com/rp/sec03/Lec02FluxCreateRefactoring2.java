@@ -13,19 +13,17 @@ public class Lec02FluxCreateRefactoring2 {
 
     	NameConsumer nameProducer = new NameConsumer();
 
-        Flux.create(nameProducer)
-                .subscribe(Util.subscriber());
+        Flux.create(nameProducer).subscribe(Util.subscriber());
 
         Runnable runnable = nameProducer::produce;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             new Thread(runnable).start();
         }
 
         Util.sleepSeconds(2);
 
     }
-
 }
 
 class NameConsumer implements Consumer<FluxSink<String>> {
@@ -42,5 +40,4 @@ class NameConsumer implements Consumer<FluxSink<String>> {
     	System.out.println("Produced "+ procuded);
         this.fluxSink.next(procuded);
     }
-
 }

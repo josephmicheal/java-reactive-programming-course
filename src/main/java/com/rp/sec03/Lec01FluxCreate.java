@@ -4,7 +4,6 @@ import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
 
 public class Lec01FluxCreate {
-
     public static void main(String[] args) {
 
         Flux.create(fluxSink -> {
@@ -16,9 +15,5 @@ public class Lec01FluxCreate {
             fluxSink.complete();
         })
         .subscribe(Util.subscriber());
-
-
-
-    }
-
+        }
 }
