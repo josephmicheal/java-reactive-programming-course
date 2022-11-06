@@ -9,7 +9,6 @@ import java.util.List;
 
 
 public class Lec02Drop {
-
     public static void main(String[] args) {
         // 75% 12
         System.setProperty("reactor.bufferSize.small", "16");
@@ -31,11 +30,7 @@ public class Lec02Drop {
                 })
                 .subscribe(Util.subscriber());
 
-
-        Util.sleepSeconds(10);
+        Util.sleepSeconds(5);
         System.out.println(list);
-
     }
-
-
 }

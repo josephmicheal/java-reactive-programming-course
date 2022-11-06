@@ -15,7 +15,7 @@ public class Lec12FlatMap {
 
         UserService.getUsers()
                 .flatMap(user -> OrderService.getOrders(user.getUserId())) // mono / flux
-               // .filter(p -> p > 10)
+                .filter(p -> p.getUserId() > 10)
                 .subscribe(Util.subscriber());
 
 

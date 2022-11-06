@@ -1,12 +1,14 @@
 package com.rp.sec06;
 
 import com.rp.courseutil.Util;
+
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
-public class Lec03SubscribeOnMultipleItems {
+public class Lec03SubscribeOnMultipleItems2 {
 	public static void main(String[] args) {
 		
+		System.out.println("Trying to execute using boundedElastic");
 		Flux<Object> flux = Flux.create(fluxSink -> {
 			printThreadName("create");
 			for (int i = 0; i < 4; i++) {
@@ -16,8 +18,20 @@ public class Lec03SubscribeOnMultipleItems {
 			fluxSink.complete();
 		}).doOnNext(i -> printThreadName("next " + i));
 
+		
 		flux.subscribeOn(Schedulers.boundedElastic()).subscribe(v -> printThreadName("sub " + v));
-		flux.subscribeOn(Schedulers.parallel()).subscribe(v -> printThreadName("sub " + v));
+		
+		Util.sleepSeconds(5);
+		System.out.println("Trying to execute using parallel");
+		Flux<Object> flux1 = Flux.create(fluxSink -> {
+			printThreadName("create");
+			for (int i = 0; i < 4; i++) {
+				fluxSink.next(i);
+				Util.sleepSeconds(1);
+			}
+			fluxSink.complete();
+		}).doOnNext(i -> printThreadName("next " + i));
+		flux1.subscribeOn(Schedulers.parallel()).subscribe(v -> printThreadName("sub " + v));
 
 		Util.sleepSeconds(5);
 	}

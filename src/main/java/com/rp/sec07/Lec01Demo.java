@@ -5,11 +5,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
 public class Lec01Demo {
-
     public static void main(String[] args) {
 
-
-        Flux.create(fluxSink -> {
+    	Flux.create(fluxSink -> {
             for (int i = 1; i < 501; i++) {
                 fluxSink.next(i);
                 System.out.println("Pushed : " + i);
@@ -22,9 +20,6 @@ public class Lec01Demo {
             })
             .subscribe(Util.subscriber());
 
-
         Util.sleepSeconds(60);
-
     }
-
 }

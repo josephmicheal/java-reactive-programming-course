@@ -5,6 +5,7 @@ import reactor.core.publisher.Flux;
 
 public class Lec02HandleAssignment {
 
+	//Print country names until we get Canada
     public static void main(String[] args) {
 
         Flux.generate(synchronousSink -> synchronousSink.next(Util.faker().country().name()))
@@ -15,7 +16,5 @@ public class Lec02HandleAssignment {
                         synchronousSink.complete();
                 })
                 .subscribe(Util.subscriber());
-
     }
-
 }

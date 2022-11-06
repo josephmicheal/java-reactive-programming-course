@@ -4,14 +4,13 @@ import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
-public class Lec02SubscribeOnDemo {
+public class Lec02SubscribeOnDemo3 {
 	public static void main(String[] args) {
 
 		Flux<Object> flux = Flux.create(fluxSink -> {
 			printThreadName("create");
 			fluxSink.next(1);
-		}).subscribeOn(Schedulers.newParallel("vins"))
-				.doOnNext(i -> printThreadName("next " + i));
+		}).doOnNext(i -> printThreadName("next " + i));
 
 		Runnable runnable = () -> flux.doFirst(() -> printThreadName("first2"))
 				.subscribeOn(Schedulers.boundedElastic())

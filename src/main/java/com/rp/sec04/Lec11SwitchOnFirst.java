@@ -7,9 +7,7 @@ import reactor.core.publisher.Flux;
 import java.util.function.Function;
 
 public class Lec11SwitchOnFirst {
-
     public static void main(String[] args) {
-
         getPerson()
                 .switchOnFirst((signal, personFlux) -> {
                     System.out.println("inside switch-on-first");
@@ -19,7 +17,7 @@ public class Lec11SwitchOnFirst {
     }
 
     public static Flux<Person> getPerson(){
-        return Flux.range(1, 10)
+        return Flux.range(1, 5)
                 .map(i -> new Person());
     }
 
@@ -29,8 +27,7 @@ public class Lec11SwitchOnFirst {
                 .doOnNext(p -> p.setName(p.getName().toUpperCase()))
                 .doOnDiscard(Person.class, p -> System.out.println("Not allowing : " + p));
     }
-
-
-
-
 }
+
+
+
